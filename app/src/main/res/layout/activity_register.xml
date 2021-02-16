@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="listener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="registerViewModel"
+            type="com.alvin.shopappwithfirebase.ui.activity.register.RegisterViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.register.RegisterActivity">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_first_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="@string/first_name"
+            android:text="@={registerViewModel.firstName}"
+            app:layout_constraintBottom_toTopOf="@+id/materialTextView1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView1"
+            isVisible="@{registerViewModel.firstNameError}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={registerViewModel.firstNameError}"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/et_last_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_first_name"
+            tools:text="@string/email" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="@string/last_name"
+            android:text="@={registerViewModel.lastName}"
+            app:layout_constraintBottom_toTopOf="@+id/materialTextView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView2"
+            isVisible="@{registerViewModel.lastNameError}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={registerViewModel.lastNameError}"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/et_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_last_name"
+            tools:text="@string/email" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="@string/email"
+            android:text="@={registerViewModel.emailId}"
+            app:layout_constraintBottom_toTopOf="@+id/materialTextView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView2" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView3"
+            isVisible="@{registerViewModel.emailIdError}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={registerViewModel.emailIdError}"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/et_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_email"
+            tools:text="@string/email" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="@string/password"
+            android:text="@={registerViewModel.password}"
+            app:layout_constraintBottom_toTopOf="@+id/materialTextView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView3" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView4"
+            isVisible="@{registerViewModel.passwordError}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={registerViewModel.passwordError}"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/et_con_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_password"
+            tools:text="@string/email" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_con_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="@string/con_password"
+            android:text="@={registerViewModel.confirmPassword}"
+            app:layout_constraintBottom_toTopOf="@+id/materialTextView5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView4" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView5"
+            isVisible="@{registerViewModel.confirmPasswordError}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={registerViewModel.confirmPasswordError}"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/cb_terms"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_con_password"
+            tools:text="@string/email" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_terms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/terms"
+            app:layout_constraintBottom_toTopOf="@+id/btn_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView5" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="@{() -> registerViewModel.validation()}"
+            android:text="@string/register"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cb_terms" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

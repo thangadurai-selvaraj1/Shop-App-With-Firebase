@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Shop App With Firebase</string>
+
+    <!--Login-->
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forgot">Forgot ?</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+
+    <!--Register-->
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email Id</string>
+    <string name="con_password">Confirm Password</string>
+    <string name="terms">Terms and conditions</string>
+</resources>
