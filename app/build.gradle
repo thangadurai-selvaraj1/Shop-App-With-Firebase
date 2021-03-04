@@ -58,6 +58,9 @@ dependencies {
     // Firebase Authentication
     implementation 'com.google.firebase:firebase-auth-ktx'
 
+    // Firebase Cloud Firestore
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+
     //hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"

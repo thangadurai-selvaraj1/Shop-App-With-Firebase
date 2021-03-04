@@ -37,9 +37,10 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/materialTextView1"
             isVisible="@{registerViewModel.firstNameError}"
+            android:text="@={registerViewModel.firstNameError}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@={registerViewModel.firstNameError}"
+
             android:textColor="@color/white"
             android:textSize="10dp"
             app:layout_constraintBottom_toTopOf="@+id/et_last_name"

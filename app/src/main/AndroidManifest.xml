@@ -12,8 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopAppWithFirebase">
-
-        <activity android:name=".ui.activity.register.RegisterActivity"/>
+        <activity android:name=".ui.activity.forgot.ForgotActivity"></activity>
+        <activity android:name=".ui.activity.register.RegisterActivity" />
         <activity android:name=".ui.activity.login.LoginActivity" />
         <activity android:name=".ui.activity.main.MainActivity" />
         <activity

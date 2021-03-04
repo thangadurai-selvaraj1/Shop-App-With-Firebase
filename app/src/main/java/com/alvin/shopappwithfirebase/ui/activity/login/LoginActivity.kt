@@ -10,6 +10,7 @@ import com.alvin.shopappwithfirebase.R
 import com.alvin.shopappwithfirebase.data.network.Status
 import com.alvin.shopappwithfirebase.databinding.ActivityLoginBinding
 import com.alvin.shopappwithfirebase.ui.activity.base.BaseActivity
+import com.alvin.shopappwithfirebase.ui.activity.forgot.ForgotActivity
 import com.alvin.shopappwithfirebase.ui.activity.main.MainActivity
 import com.alvin.shopappwithfirebase.ui.activity.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,7 +36,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     }
 
 
-
     private fun loginObserver() {
         loginViewModel.apiResponse.observe(this, { result ->
             result?.status?.let {
@@ -43,6 +43,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     Status.SUCCESS -> {
                         hideProgress()
                         startActivity(Intent(this, MainActivity::class.java))
+                        finish()
                     }
                     Status.ERROR -> {
                         hideProgress()
@@ -64,7 +65,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v) {
             binding.tvForgot -> {
-
+                startActivity(Intent(this@LoginActivity, ForgotActivity::class.java))
             }
             binding.tvRegister -> {
                 startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))

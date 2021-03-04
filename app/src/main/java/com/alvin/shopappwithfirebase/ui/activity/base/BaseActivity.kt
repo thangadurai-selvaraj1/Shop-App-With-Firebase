@@ -8,10 +8,9 @@ open class BaseActivity : AppCompatActivity() {
 
     lateinit var progressDialog: Dialog
     fun showProgress() {
-        progressDialog=  Dialog(this)
+        progressDialog = Dialog(this)
 
         progressDialog.apply {
-
             setContentView(R.layout.dialog_progress)
             setCancelable(false)
             setCanceledOnTouchOutside(false)

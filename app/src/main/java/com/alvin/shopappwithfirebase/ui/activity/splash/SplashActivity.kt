@@ -8,8 +8,6 @@ import com.alvin.shopappwithfirebase.databinding.ActivitySplashBinding
 import com.alvin.shopappwithfirebase.ui.activity.login.LoginActivity
 import com.alvin.shopappwithfirebase.ui.activity.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -19,7 +17,7 @@ import javax.inject.Inject
 class SplashActivity : AppCompatActivity() {
 
     @Inject
-    private lateinit var auth: FirebaseAuth
+    lateinit var auth: FirebaseAuth
 
     private lateinit var binding: ActivitySplashBinding
 
@@ -32,7 +30,6 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun checkLoggedInState() {
-        auth.signOut()
         if (auth.currentUser == null) {
             launchScreen(LoginActivity::class.java)
         } else {

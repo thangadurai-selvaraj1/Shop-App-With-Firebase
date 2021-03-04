@@ -1,17 +1,18 @@
 package com.alvin.shopappwithfirebase.ui.activity.register
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.alvin.shopappwithfirebase.R
+import com.alvin.shopappwithfirebase.data.model.User
 import com.alvin.shopappwithfirebase.data.network.Status
 import com.alvin.shopappwithfirebase.databinding.ActivityRegisterBinding
 import com.alvin.shopappwithfirebase.ui.activity.base.BaseActivity
-import com.alvin.shopappwithfirebase.ui.activity.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterActivity : BaseActivity(), View.OnClickListener {
 
     private val registerViewModel by viewModels<RegisterViewModel>()
@@ -24,12 +25,9 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
         binding.lifecycleOwner = this
         binding.registerViewModel = registerViewModel
 
-
         registerObserver()
-
-
+        userObserver()
     }
-
 
 
     private fun registerObserver() {
@@ -37,10 +35,48 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
             result?.status?.let {
                 when (it) {
                     Status.SUCCESS -> {
-                        hideProgress()
-                        startActivity(Intent(this, MainActivity::class.java))
+                        result.data?.user?.let { user ->
+                            registerViewModel.addUserCollection(
+                                User(
+                                    user.uid,
+                                    registerViewModel.firstName.get()!!,
+                                    registerViewModel.lastName.get()!!,
+                                    registerViewModel.emailId.get()!!,
+                                    "",
+                                    "",
+                                    "",
+                                    0
+                                )
+                            )
+                        }
                     }
                     Status.ERROR -> {
+                        hideProgress()
+                        showToast(
+                            result.message.toString()
+                        )
+                    }
+                    Status.LOADING -> {
+                        showProgress()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun userObserver() {
+        registerViewModel.apiResponseUser.observe(this, { result ->
+            result?.status?.let {
+                when (it) {
+                    Status.SUCCESS -> {
+                        hideProgress()
+                        hideProgress()
+
+                        showToast("Registration Successfully")
+                        finish()
+                    }
+                    Status.ERROR -> {
+                        hideProgress()
                         hideProgress()
                         showToast(
                             result.message.toString()

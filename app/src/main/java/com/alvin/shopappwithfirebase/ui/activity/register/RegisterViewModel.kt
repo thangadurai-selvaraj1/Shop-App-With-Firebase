@@ -4,6 +4,7 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.alvin.shopappwithfirebase.data.model.User
 import com.alvin.shopappwithfirebase.data.network.Resource
 import com.alvin.shopappwithfirebase.data.network.Status
 import com.alvin.shopappwithfirebase.extensions.isNullOrEmpty
@@ -23,6 +24,10 @@ class RegisterViewModel @Inject constructor(
 
     private val _apiResponse = MutableLiveData<Resource<AuthResult>>()
     val apiResponse: MutableLiveData<Resource<AuthResult>> = _apiResponse
+
+    private val _apiResponseUser = MutableLiveData<Resource<Void>>()
+    val apiResponseUser: MutableLiveData<Resource<Void>> = _apiResponseUser
+
 
     var firstName = ObservableField("")
     var lastName = ObservableField("")
@@ -91,6 +96,28 @@ class RegisterViewModel @Inject constructor(
                 }.onSuccess { success ->
                     success.collect {
                         _apiResponse.postValue(it)
+                    }
+                }.onFailure { failure ->
+                    print(failure.message)
+                }
+
+            }
+        }
+
+    }
+
+     fun addUserCollection(user: User) {
+
+        viewModelScope.launch {
+            CoroutineScope(Dispatchers.IO).launch {
+
+                _apiResponseUser.postValue(Resource(Status.LOADING, null, null))
+
+                kotlin.runCatching {
+                    authRepository.addUserCollection(user)
+                }.onSuccess { success ->
+                    success.collect {
+                        _apiResponseUser.postValue(it)
                     }
                 }.onFailure { failure ->
                     print(failure.message)
